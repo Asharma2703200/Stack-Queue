@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static int trap(int[] height) {
+        
+        int n = height.length;
+        
+        int[] maxl = new int[n];
+        int[] maxr = new int[n];
+        
+       maxl[0] = height[0];
+      for(int i = 1 ; i < n;i++){
+          maxl[i] = Math.max(maxl[i - 1] , height[i]);
+      }
+      
+      maxr[n - 1] = height[n - 1];
+      for(int i = n - 2 ; i >= 0 ;i--){
+          maxr[i] = Math.max(maxr[i + 1] , height[i]);
+      }
+        
+        int[] ans = new int[n];
+        for(int i = 0 ;i < n;i++){
+            ans[i] = Math.min(maxl[i] , maxr[i]) - height[i];
+        }
+        
+        int water = 0;
+        for(int i : ans){
+            water += i;
+        }
+        
+        return water;
+    }
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(read.readLine());
+        int arr[] = new int[n];
+        for(int i=0;i<n;i++)arr[i] = Integer.parseInt(read.readLine());
+        int result = trap(arr);
+        System.out.println(result);
+        
+    }
+}
