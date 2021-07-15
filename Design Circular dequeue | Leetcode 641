@@ -67,6 +67,7 @@ public class Main {
         T value = n.data;
         
         n.delete();
+        size--;
         
         return value;
     }
@@ -80,6 +81,7 @@ public class Main {
         T value = n.data;
         
         n.delete();
+        size--;
         
         return value;
     }
